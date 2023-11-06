@@ -80,9 +80,7 @@ First you need [activate Developer Mode](https://linuxhint.com/enable-or-disable
 
 ## Adding Music
 
-Create the `music` folder on root of your project.
-
-Add your own audio files to the `music` folder.
+The bot will search recursively through the directory given by
 
 Deploy the commands by doing `node deploy-command.js`.
 
@@ -95,8 +93,6 @@ Public Only
 ping - Pong!
 status - Checks what audio file is playing currently.
 about - Information about the bot.
-list - Lists the available audio tracks.
-list (page) - Input a number to change the page of the list.
 next vote - Goes to next music by vote.
 previous vote - Goes to previous music by vote.
 play - Resumes music.
@@ -127,6 +123,7 @@ When contributing, be sure to add yourself to the contributors list in `/command
 * Select songs using the filepath of the song.
 * Create queues using songs only inside subfolders.
 * Fix the permissions check on certain commands.
+* Fix list command.
 
 # Credits
 ChatGPT: Some code in this codebase used ChatGPT

@@ -25,7 +25,7 @@ import { player } from './VoiceInitialization.js';
 
 
 const { shuffle, repeat, musicDir } = JSON.parse(readFileSync('./config.json', 'utf-8'));
-export const files = readdirSync(musicDir, { recursive: true }).filter(file => /(.flac|.m4a|.mp3|.wav|.aiff|.ogg|.acc|.wma|.alac)$/gi.test(file));
+export const files = readdirSync(musicDir, { recursive: true }).filter(file => /(\.flac|\.m4a|\.mp3|\.wav|\.aiff|\.ogg|\.acc|\.wma|\.alac)$/gi.test(file));
 export let playerState;
 export let isAudioStatePaused;
 

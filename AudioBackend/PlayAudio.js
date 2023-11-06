@@ -41,7 +41,7 @@ export let audioAlbum;
 export let duration;
 export let audioIndex;
 
-const inputFiles = readdirSync(musicDir, { recursive: true }).filter(file => /(.flac|.m4a|.mp3|.wav|.aiff|.ogg|.acc|.wma|.alac)$/gi.test(file));
+const inputFiles = readdirSync(musicDir, { recursive: true }).filter(file => /(\.flac|\.m4a|\.mp3|\.wav|\.aiff|\.ogg|\.acc|\.wma|\.alac)$/gi.test(file));
 export async function playAudio(bot) {
   const resource = createAudioResource(musicDir + '/' + audio);
   player.play(resource);

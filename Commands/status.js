@@ -21,10 +21,12 @@
 
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { parseFile } from 'music-metadata';
-import { audio, metadataEmpty, duration, audioTitle, currentTrack } from '../AudioBackend/PlayAudio.js';
+import { audio, metadataEmpty, duration, audioTitle, currentTrack, audioIndex } from '../AudioBackend/PlayAudio.js';
 import { files, playerState } from '../AudioBackend/AudioControl.js';
 import { votes } from '../Utilities/Voting.js';
 
+
+const { musicDir } = JSON.parse(readFileSync('./config.json', 'utf-8'));
 export default {
   data: new SlashCommandBuilder()
     .setName('status')
@@ -49,7 +51,7 @@ export default {
       audioName = files[audioID];
       if (!metadataEmpty) {
         try {
-          const { common } = await parseFile('music/' + audioName);
+          const { common } = await parseFile(musicDir + '/' + audioName);
           audioName = common.title;
         } catch (error) {
           console.error(error.message);
@@ -68,7 +70,6 @@ export default {
         { name: 'Votes Needed', value: `${votesRequired}` }
       )
       .setColor('#0066ff');
-
     if (metadataEmpty) {
       controlEmbed.addFields(
         { name: 'Currently Playing', value: `${audio}` },
@@ -76,7 +77,8 @@ export default {
       );
     } else {
       controlEmbed.addFields(
-        { name: 'Currently Playing', value: `${audioTitle}` },
+        { name: 'Currently Playing', value: `${audioTitle}`, inline: true },
+        { name: 'Index', value: `${audioIndex}`, inline: true },
         { name: 'Up Next', value: `${audioName}` }
       );
     }

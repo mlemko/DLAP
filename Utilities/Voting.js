@@ -28,7 +28,7 @@ export const votes = new Set();
 let nextCheck;
 
 async function commandCheck(interaction, bot) {
-  if (nextCheck) {
+  if (interaction.commandName == "next") {
     await interaction.reply({ content: 'Playing next music' });
     player.stop();
     return await nextAudio(bot);
@@ -85,7 +85,6 @@ export async function voteSkip(interaction, bot) { /*
   }
 */
   if (interaction.options.getSubcommand() === 'force') {
-    if (!interaction.member.roles.cache.has(djRole) && interaction.user.id !== ownerID && !interaction.member.permission.has(PermissionFlagsBits.ManageGuild)) return interaction.reply({ content: 'You need a specific role to execute this command', ephemeral: true });
     console.log('Force skipping this audio track...');
     if (playerState === 'Playing' || playerState === 'Paused') {
       votes.clear();

@@ -25,6 +25,7 @@ Make a new file called `config.json` inside the root of your project.
 ```
 {
     "token": "token_here",
+    "musicDir": "full/relative_path_here"
     "txtFile": true/false,
     "shuffle": true/false,
     "repeat": true/false,
@@ -55,6 +56,9 @@ First you need [activate Developer Mode](https://linuxhint.com/enable-or-disable
 - `"voiceChannel"`: Create a channel in your server > Right Click on top > "Copy channel ID"
 - `"djRole"`: Create a role in your server > Right Click on top > "Copy role ID"
 - `"ownerID"`: Right Click on top of yourself on a discord server > "Copy User ID" (Your User ID is not "YouName#3217")
+
+*Music location*
+- `"musicDir"`: The absolute or relative path to the directory containing music to play.
 
 *Bool settings (set to true or false)*
 - `"txtFile"`: true/false (Generates a text file)
@@ -95,17 +99,17 @@ list - Lists the available audio tracks.
 list (page) - Input a number to change the page of the list.
 next vote - Goes to next music by vote.
 previous vote - Goes to previous music by vote.
-
-Special Permissions Only
---------------
-join - Joins voice chat.
 play - Resumes music.
 play (int) - Input a number for the selection for the audio file.
 pause - Pauses music.
 next force - Goes to next music by force.
 previous force - Goes to previous music by force.
 reshuffle - Reshuffles the playlist.
+join - Joins voice chat.
 leave - Leaves voice chat.
+
+Special Permissions Only (Currently be)
+--------------
 shutdown - Powers off the bot.
 ```
 
@@ -120,9 +124,9 @@ Be sure to replace that with your name.
 When contributing, be sure to add yourself to the contributors list in `/commands/about.js`.
 
 # Future Features
-* Custom string support (Basically change what the bot is saying)
-* Convert codebase to TypeScript
-* Easier to use interface
+* Select songs using the filepath of the song.
+* Create queues using songs only inside subfolders.
+* Fix the permissions check on certain commands.
 
 # Credits
 ChatGPT: Some code in this codebase used ChatGPT

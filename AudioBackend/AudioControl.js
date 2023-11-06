@@ -23,8 +23,9 @@ import { shufflePlaylist, orderPlaylist } from './QueueSystem.js';
 import { playAudio, currentTrack, updatePlaylist } from './PlayAudio.js';
 import { player } from './VoiceInitialization.js';
 
-const { shuffle, repeat } = JSON.parse(readFileSync('./config.json', 'utf-8'));
-export const files = readdirSync('music');
+
+const { shuffle, repeat, musicDir } = JSON.parse(readFileSync('./config.json', 'utf-8'));
+export const files = readdirSync(musicDir, { recursive: true }).filter(file => /(.flac|.m4a|.mp3)$/.test(file));
 export let playerState;
 export let isAudioStatePaused;
 

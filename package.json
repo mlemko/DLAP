@@ -27,5 +27,6 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^2.0.15"
-  }
+  },
+  "packageManager": "yarn@4.0.1"
 }

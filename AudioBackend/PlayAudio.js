@@ -25,7 +25,7 @@ import { EmbedBuilder } from 'discord.js';
 import { player } from './VoiceInitialization.js';
 import { audioState, files } from './AudioControl.js';
 import { integer } from '../Commands/play.js';
-const { statusChannel, txtFile } = JSON.parse(readFileSync('./config.json', 'utf-8'));
+const { statusChannel, txtFile, musicDir } = JSON.parse(readFileSync('./config.json', 'utf-8'));
 
 let fileData;
 
@@ -39,10 +39,11 @@ export let audioArtist;
 export let audioYear;
 export let audioAlbum;
 export let duration;
+export let audioIndex;
 
-const inputFiles = readdirSync('music');
+const inputFiles = readdirSync(musicDir, { recursive: true }).filter(file => /(.flac|.m4a|.mp3)$/.test(file));
 export async function playAudio(bot) {
-  const resource = createAudioResource('music/' + audio);
+  const resource = createAudioResource(musicDir + '/' + audio);
   player.play(resource);
 
   console.log(`Now playing: ${audio}`);
@@ -50,9 +51,10 @@ export async function playAudio(bot) {
   audioState(0);
 
   const audioFile = audio;
+  audioIndex = inputFiles.indexOf(audioFile);
 
   try {
-    const { common, format } = await parseFile('music/' + audio);
+    const { common, format } = await parseFile(musicDir + '/' + audio);
     metadataEmpty = false;
     if (common.title && common.artist && common.year && common.album) {
       audioTitle = common.title;
@@ -90,7 +92,8 @@ export async function playAudio(bot) {
       { name: 'Title', value: `${audioTitle}`, inline: true },
       { name: 'Artist', value: `${audioArtist}`, inline: true },
       { name: 'Year', value: `${audioYear}` },
-      { name: 'Duration', value: `${duration}` }
+      { name: 'Duration', value: `${duration}`, inline: true },
+      { name: 'Index', value: `${audioIndex}`, inline: true }
     );
     statusEmbed.setFooter({ text: `Album: ${audioAlbum}\nFilename: ${audioFile}` });
     statusEmbed.setColor('#0066ff');

@@ -82,7 +82,8 @@ export async function playAudio(bot) {
   if (metadataEmpty) {
     statusEmbed.setTitle('Now Playing');
     statusEmbed.addFields(
-      { name: 'Title', value: `${audio}` },
+      { name: 'Title', value: `${audio}`, inline: true },
+      { name: 'Index', value: `${audioIndex}`, inline: true },
       { name: 'Duration', value: `${duration}` }
     );
     statusEmbed.setColor('#0066ff');

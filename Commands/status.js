@@ -72,7 +72,8 @@ export default {
       .setColor('#0066ff');
     if (metadataEmpty) {
       controlEmbed.addFields(
-        { name: 'Currently Playing', value: `${audio}` },
+        { name: 'Currently Playing', value: `${audio}`, inline: true },
+        { name: 'Index', value: `${audioIndex}`, inline: true },
         { name: 'Up Next', value: `${audioName}` }
       );
     } else {

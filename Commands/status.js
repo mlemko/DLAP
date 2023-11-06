@@ -18,7 +18,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  ***************************************************************************/
-
+import { readFileSync } from 'node:fs';
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { parseFile } from 'music-metadata';
 import { audio, metadataEmpty, duration, audioTitle, currentTrack, audioIndex } from '../AudioBackend/PlayAudio.js';
